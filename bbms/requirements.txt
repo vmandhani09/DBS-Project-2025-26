@@ -1,0 +1,15 @@
+# requirements.txt for BBMS (Blood Bank Management System)
+
+# PHP and MySQL are required for this project. This file lists optional tools and libraries for development and deployment.
+
+# PHP (version 8.0 or higher recommended)
+# MySQL (version 8.0 or higher recommended)
+# XAMPP or similar local server environment
+# phpMyAdmin (for database management)
+
+# For documentation and code formatting (optional):
+# markdownlint
+# PHP_CodeSniffer
+# Composer (for PHP dependency management, if needed)
+
+# No Python dependencies required for this project.

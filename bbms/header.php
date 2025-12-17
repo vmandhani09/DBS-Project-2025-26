@@ -1,0 +1,21 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) session_start();
+include_once 'auth.php';
+$cur = basename($_SERVER['SCRIPT_NAME']);
+?>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>BBMS - Admin</title><meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"><link rel="stylesheet" href="/bbms/assets/style.css"></head><body><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="brand px-3 d-flex align-items-center"><div class="logo-circle me-2">BB</div><div class="brand-text"><div style="font-weight:700">BBMS</div><div class="small-muted">Admin</div></div></div><button id="sidebarToggle" class="btn-sidebar-toggle" title="Toggle sidebar"><i class="bi bi-chevron-left"></i></button></div><nav class="px-1 mt-3">
+<div class="nav-item<?= $cur=='index.php'?' active':''?>" onclick="location.href='/bbms/index.php'"><span class="icon"><i class="bi bi-speedometer2"></i></span><span class="label">Dashboard</span></div>
+<div class="nav-item<?= strpos($cur,'donor')!==false?' active':''?>" onclick="location.href='/bbms/donors/view_donors.php'"><span class="icon"><i class="bi bi-person-fill"></i></span><span class="label">Donors</span></div>
+<div class="nav-item<?= strpos($cur,'donation')!==false?' active':''?>" onclick="location.href='/bbms/donations/view_donations.php'"><span class="icon"><i class="bi bi-heart-pulse-fill"></i></span><span class="label">Donations</span></div>
+<div class="nav-item<?= strpos($cur,'patient')!==false?' active':''?>" onclick="location.href='/bbms/patients/view_patients.php'"><span class="icon"><i class="bi bi-people-fill"></i></span><span class="label">Patients</span></div>
+<div class="nav-item<?= strpos($cur,'request')!==false?' active':''?>" onclick="location.href='/bbms/requests/view_requests.php'"><span class="icon"><i class="bi bi-clipboard-check"></i></span><span class="label">Blood Requests</span></div>
+<div class="nav-item<?= strpos($cur,'stock')!==false?' active':''?>" onclick="location.href='/bbms/stock/view_stock.php'"><span class="icon"><i class="bi bi-droplet-half"></i></span><span class="label">Stock</span></div>
+<div class="nav-item<?= strpos($cur,'hospital')!==false?' active':''?>" onclick="location.href='/bbms/hospitals/view_hospitals.php'"><span class="icon"><i class="bi bi-building"></i></span><span class="label">Hospitals</span></div>
+<div class="nav-item<?= strpos($cur,'issue')!==false?' active':''?>" onclick="location.href='/bbms/issue/issue_blood.php'"><span class="icon"><i class="bi bi-box-seam"></i></span><span class="label">Issue Blood</span></div>
+<hr style="border-color:#e0c7ca;margin:0.5rem 0">
+<?php if(is_logged_in()): ?>
+<div class="nav-item" onclick="location.href='/bbms/logout.php'"><span class="icon"><i class="bi bi-box-arrow-right"></i></span><span class="label">Logout</span></div>
+<?php else: ?>
+<div class="nav-item<?= $cur=='login.php'?' active':''?>" onclick="location.href='/bbms/login.php'"><span class="icon"><i class="bi bi-box-arrow-in-right"></i></span><span class="label">Admin Login</span></div>
+<?php endif; ?>
+</nav></div><div class="main"><div class="topbar mb-4 d-flex align-items-center justify-content-between"><div class="d-flex align-items-center title"><h1 class="mb-0">Blood Bank Management System</h1></div><div class="controls d-flex align-items-center gap-3"><?php if(is_logged_in()): ?><div class="d-flex align-items-center gap-2"><button class="btn btn-sm btn-ghost" title="Notifications"><i class="bi bi-bell"></i></button><div class="text-end small-muted"><div style="font-weight:700;color:#333"><?=htmlspecialchars($_SESSION['admin_username'])?></div><div style="font-size:0.85rem;color:#ff6b9d">Administrator</div></div></div><?php else: ?><a href="/bbms/login.php" class="btn btn-ghost">Login</a><?php endif; ?></div></div>
